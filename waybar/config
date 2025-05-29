@@ -1,0 +1,111 @@
+{
+    "layer": "top",
+    "margin-botton": 4,
+    "margin-top": 0,
+
+    "modules-left": [
+    "custom/launcher",
+    "temperature", 
+    "memory",
+    "cpu",
+    "hyprland/window"
+    ],
+
+    "modules-center": [
+    "hyprland/workspaces"
+    ],
+
+    "modules-right": [
+    "network",
+    "custom/micro",
+    "pulseaudio",
+    "clock",
+    "custom/dunst",
+    "battery",
+    "custom/power"
+    ],
+
+      "custom/launcher": {
+          "format": "󰣇 ",
+          "on-click": "rofi -show drun",
+          "on-click-right": "killall rofi"
+      },
+      "temperature": {
+          "critical-threshold": 80,
+          "format": " {temperatureC}°C"
+      },
+      "memory": {
+          "interval": 30,
+          "format": " {}%",
+          "max-length": 10
+      },
+      "cpu": {
+          "interval": 2,
+          "format": "󰍛 {usage}%",
+          "max-length": 5,
+        "max-length": 5
+      },
+      "hyprland/workspaces": {
+          "format": "{icon}",
+          "on-scroll-up": "hyprctl dispatch workspace e+1",
+          "on-scroll-down": "hyprctl dispatch workspace e-1",
+          "on-click": "activate"
+      },
+      "network": {
+          "format-wifi": " ",
+          "format-ethernet": " ",
+          "format-disconnected": " ",
+          /* "format-alt": "{ifname}: {ipaddr}/{cidr}", */
+          "tooltip-format": "{essid} ({signalStrength}%)"
+          /* "tooltip": false */
+      },
+      "custom/micro": {
+          "exec": "~/.config/scripts/microphone.sh",
+          "return-type": "json",
+          "interval": 1,
+          "on-click": "~/.config/scripts/microphone.sh toggle",
+          "on-scroll-up": "~/.config/scripts/microphone.sh up",
+          "on-scroll-down": "~/.config/scripts/microphone.sh down",
+          "tooltip": true
+
+      },
+      "pulseaudio": {
+          "format": "{icon} {volume}%",
+          "format-muted": "󰝟 0%",
+          "format-source": "󰍬 {volume}%",
+          "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+          "format-icons": {
+              "headphone": "󰋋",
+              "default": ["󰕿", "󰖀", "󰕾"]
+          },
+      },
+      "clock": {
+          "format": " {:%H:%M - %A}"
+      },
+      "custom/dunst": {
+          "exec": "~/.config/scripts/dunst-counter.sh",
+          "return-type": "json",
+          "interval": 1,
+          "on-click": "dunstctl set-paused toggle",
+          "on-click-right": "dunstctl close-all",
+          "tooltip": true
+      },
+      "battery": {
+          "interval": 2,
+          "states": {
+              "good": 95,
+              "warning": 30,
+              "critical": 20
+            },
+            "format": "{icon}  {capacity}%",
+            "format-charging": " {capacity}%",
+            "format-plugged": " {capacity}%",
+            "format-alt": "{time} {icon}",
+            "format-icons": ["", "", "", "", ""]
+      },
+      "custom/power": {
+          "format": " ",
+          "on-click": " "
+      },
+
+}
